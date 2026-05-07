@@ -1,7 +1,7 @@
-/* Estilos personalizados para o projeto Harry Potter */
+/* Estilos personalizados para o projeto Barcelona FC */
 
 body {
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    background: linear-gradient(135deg, #004D98, #A50044); /* Azul e vermelho do Barça */
     color: #ffffff;
     font-family: 'Arial', sans-serif;
 }
@@ -14,7 +14,7 @@ body {
 }
 
 h1 {
-    color: #ffd700; /* Dourado como a Grifinória */
+    color: #FFD700; /* Dourado */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -47,7 +47,7 @@ h1 {
 }
 
 .card-title {
-    color: #2c3e50;
+    color: #004D98; /* Azul */
 }
 
 .spinner-border {
