@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listagem de Personagens de Harry Potter</title>
+    <title>Personagens de Harry Potter - AV1</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Personagens de Harry Potter</h1>
-        <div id="loading" class="text-center">
-            <div class="spinner-border" role="status">
+        <header class="text-center mb-4">
+            <h1>Personagens de Harry Potter</h1>
+            <p class="lead">Explore os personagens do mundo mágico de J.K. Rowling</p>
+        </header>
+        <div id="loading" class="text-center d-none">
+            <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Carregando...</span>
             </div>
-            <p>Carregando dados...</p>
+            <p class="mt-2">Buscando dados da API...</p>
         </div>
-        <div id="error" class="alert alert-danger d-none" role="alert">
-            Erro ao carregar os dados. Tente novamente mais tarde.
+        <div id="error" class="alert alert-danger d-none text-center" role="alert">
+            Ops! Não conseguimos carregar os dados. Verifique sua conexão e tente recarregar a página.
         </div>
         <div id="content" class="row d-none"></div>
     </div>
+    <footer class="text-center mt-5 py-3 bg-light">
+        <p class="mb-0">Projeto AV1 - 2º Bimestre | Desenvolvido com ❤️ para o mundo bruxo</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/script.js"></script>
 </body>
