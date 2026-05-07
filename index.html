@@ -13,6 +13,18 @@
             <h1>Jogadores do Barcelona FC</h1>
             <p class="lead">Conheça os craques do time blaugrana</p>
         </header>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <input type="text" id="searchInput" class="form-control" placeholder="Buscar jogador por nome...">
+            </div>
+            <div class="col-md-6">
+                <select id="sortSelect" class="form-select">
+                    <option value="name">Ordenar por Nome</option>
+                    <option value="position">Ordenar por Posição</option>
+                    <option value="nationality">Ordenar por Nacionalidade</option>
+                </select>
+            </div>
+        </div>
         <div id="loading" class="text-center d-none">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Carregando...</span>
@@ -23,6 +35,24 @@
             Ops! Não conseguimos carregar os dados. Verifique sua conexão e tente recarregar a página.
         </div>
         <div id="content" class="row d-none"></div>
+    </div>
+
+    <!-- Modal para detalhes do jogador -->
+    <div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="playerModalLabel">Detalhes do Jogador</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="playerModalBody">
+                    <!-- Conteúdo será preenchido via JS -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
     </div>
     <footer class="text-center mt-5 py-3 bg-light">
         <p class="mb-0">Projeto AV1 - 2º Bimestre | Visca el Barça! ⚽</p>
