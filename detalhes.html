@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Jogador - Barcelona FC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="mb-3">
+            <a href="index.html" class="btn btn-primary">← Voltar para Listagem</a>
+        </div>
+
+        <div id="loading" class="text-center d-none">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Carregando...</span>
+            </div>
+            <p class="mt-2">Carregando detalhes do jogador...</p>
+        </div>
+
+        <div id="error" class="alert alert-danger d-none text-center" role="alert">
+            Ops! Não conseguimos carregar os detalhes. Verifique sua conexão e tente novamente.
+        </div>
+
+        <div id="playerDetails" class="d-none">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <img id="playerImage" src="" class="img-fluid rounded mb-4" alt="Foto do jogador" style="max-height: 400px;">
+                </div>
+                <div class="col-md-8">
+                    <h1 id="playerName"></h1>
+                    <hr>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <p><strong>Posição:</strong> <span id="playerPosition"></span></p>
+                            <p><strong>Nacionalidade:</strong> <span id="playerNationality"></span></p>
+                            <p><strong>Data de Nascimento:</strong> <span id="playerDateBorn"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Altura:</strong> <span id="playerHeight"></span></p>
+                            <p><strong>Peso:</strong> <span id="playerWeight"></span></p>
+                            <p><strong>Time:</strong> <span id="playerTeam"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h3>Sobre o Jogador</h3>
+                        <p id="playerDescription"></p>
+                    </div>
+
+                    <div class="mt-4" id="additionalInfo">
+                        <h3>Informações Adicionais</h3>
+                        <p><strong>Salário Anual:</strong> <span id="playerSalary">Não informado</span></p>
+                        <p><strong>Local de Nascimento:</strong> <span id="playerBornLocation">Não informado</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/detalhes.js"></script>
+</body>
+</html>

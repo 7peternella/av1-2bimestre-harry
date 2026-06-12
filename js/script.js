@@ -1,38 +1,46 @@
 // Script para carregar e exibir jogadores do Barcelona FC
-// Elenco atual aproximado de 2024/25 (simulado para 2026)
+// Dados são carregados da API TheSportsDB em tempo real
 
-// Dados dos jogadores com imagens reais
-const allPlayers = [
-    { idPlayer: 1, strPlayer: "Marc-André ter Stegen", strPosition: "Goleiro", strNationality: "Alemanha", dateBorn: "1992-04-30", strHeight: "187 cm", strWeight: "85 kg", strTeam: "Barcelona FC", strDescriptionEN: "Goleiro alemão, capitão do time, conhecido por suas defesas incríveis.", strThumb: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 2, strPlayer: "Jules Koundé", strPosition: "Zagueiro", strNationality: "França", dateBorn: "1998-11-12", strHeight: "178 cm", strWeight: "70 kg", strTeam: "Barcelona FC", strDescriptionEN: "Zagueiro francês, rápido e técnico.", strThumb: "https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 3, strPlayer: "Ronald Araújo", strPosition: "Zagueiro", strNationality: "Uruguai", dateBorn: "1999-03-07", strHeight: "188 cm", strWeight: "79 kg", strTeam: "Barcelona FC", strDescriptionEN: "Zagueiro uruguaio, forte no jogo aéreo.", strThumb: "https://images.unsplash.com/photo-1552793735-b0c40ca199f7?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 4, strPlayer: "Andreas Christensen", strPosition: "Zagueiro", strNationality: "Dinamarca", dateBorn: "1996-04-10", strHeight: "188 cm", strWeight: "82 kg", strTeam: "Barcelona FC", strDescriptionEN: "Zagueiro dinamarquês, experiente.", strThumb: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 5, strPlayer: "Jordi Alba", strPosition: "Lateral", strNationality: "Espanha", dateBorn: "1989-03-21", strHeight: "170 cm", strWeight: "68 kg", strTeam: "Barcelona FC", strDescriptionEN: "Lateral espanhol, ídolo do clube.", strThumb: "https://images.unsplash.com/photo-1570955096122-54aa60b639e0?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 6, strPlayer: "Alejandro Balde", strPosition: "Lateral", strNationality: "Espanha", dateBorn: "2003-10-18", strHeight: "175 cm", strWeight: "69 kg", strTeam: "Barcelona FC", strDescriptionEN: "Jovem lateral espanhol, promessa.", strThumb: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 7, strPlayer: "Pedri", strPosition: "Meio-campo", strNationality: "Espanha", dateBorn: "2002-11-25", strHeight: "174 cm", strWeight: "60 kg", strTeam: "Barcelona FC", strDescriptionEN: "Meio-campista espanhol, craque jovem.", strThumb: "https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 8, strPlayer: "Frenkie de Jong", strPosition: "Meio-campo", strNationality: "Holanda", dateBorn: "1997-05-12", strHeight: "180 cm", strWeight: "74 kg", strTeam: "Barcelona FC", strDescriptionEN: "Meio-campista holandês, visão de jogo.", strThumb: "https://images.unsplash.com/photo-1552793735-b0c40ca199f7?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 9, strPlayer: "Gavi", strPosition: "Meio-campo", strNationality: "Espanha", dateBorn: "2004-08-05", strHeight: "173 cm", strWeight: "68 kg", strTeam: "Barcelona FC", strDescriptionEN: "Meio-campista espanhol, revelação.", strThumb: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 10, strPlayer: "Lamine Yamal", strPosition: "Atacante", strNationality: "Espanha", dateBorn: "2007-07-13", strHeight: "180 cm", strWeight: "70 kg", strTeam: "Barcelona FC", strDescriptionEN: "Jovem atacante espanhol, talento precoce.", strThumb: "https://images.unsplash.com/photo-1570955096122-54aa60b639e0?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 11, strPlayer: "Robert Lewandowski", strPosition: "Atacante", strNationality: "Polônia", dateBorn: "1988-08-21", strHeight: "185 cm", strWeight: "81 kg", strTeam: "Barcelona FC", strDescriptionEN: "Atacante polonês, artilheiro.", strThumb: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 12, strPlayer: "Raphinha", strPosition: "Atacante", strNationality: "Brasil", dateBorn: "1996-12-14", strHeight: "176 cm", strWeight: "68 kg", strTeam: "Barcelona FC", strDescriptionEN: "Atacante brasileiro, driblador.", strThumb: "https://images.unsplash.com/photo-1574482620811-1aa16ffe3c82?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 13, strPlayer: "João Cancelo", strPosition: "Lateral", strNationality: "Portugal", dateBorn: "1994-05-27", strHeight: "182 cm", strWeight: "74 kg", strTeam: "Barcelona FC", strDescriptionEN: "Lateral português, versátil.", strThumb: "https://images.unsplash.com/photo-1552793735-b0c40ca199f7?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 14, strPlayer: "Ilkay Gündoğan", strPosition: "Meio-campo", strNationality: "Alemanha", dateBorn: "1990-10-24", strHeight: "180 cm", strWeight: "80 kg", strTeam: "Barcelona FC", strDescriptionEN: "Meio-campista alemão, experiente.", strThumb: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?auto=format&fit=crop&w=400&h=300" },
-    { idPlayer: 15, strPlayer: "Ferran Torres", strPosition: "Atacante", strNationality: "Espanha", dateBorn: "2000-02-29", strHeight: "184 cm", strWeight: "77 kg", strTeam: "Barcelona FC", strDescriptionEN: "Atacante espanhol, rápido.", strThumb: "https://images.unsplash.com/photo-1570955096122-54aa60b639e0?auto=format&fit=crop&w=400&h=300" }
-];
+// URL da API para os jogadores do Barcelona FC (ID: 133739)
+const API_URL = 'https://www.thesportsdb.com/api/v1/json/3/lookup_all_players.php?id=133739';
 
-// Função para simular carregamento (já que dados são locais)
-function loadPlayers() {
+// Variável global para armazenar os jogadores
+let allPlayers = [];
+
+// Função para carregar jogadores da API
+async function loadPlayers() {
     const loading = document.getElementById('loading');
     const content = document.getElementById('content');
+    const error = document.getElementById('error');
 
     loading.classList.remove('d-none');
     content.classList.add('d-none');
+    error.classList.add('d-none');
 
-    // Simula delay de carregamento
-    setTimeout(() => {
+    try {
+        const response = await fetch(API_URL);
+        
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Verifica se a API retornou dados
+        if (!data.results || data.results.length === 0) {
+            throw new Error('Nenhum jogador encontrado na API');
+        }
+
+        allPlayers = data.results;
+
         loading.classList.add('d-none');
         displayPlayers(allPlayers);
-    }, 1000);
+
+    } catch (err) {
+        console.error('Erro ao carregar jogadores:', err);
+        loading.classList.add('d-none');
+        error.classList.remove('d-none');
+    }
 }
 
 // Função para renderizar os jogadores no DOM
@@ -68,44 +76,14 @@ function displayPlayers(players) {
             </div>
         `;
 
-        // Adiciona evento de clique para abrir modal
-        card.querySelector('.player-card').addEventListener('click', () => showPlayerDetails(player));
+        // Adiciona evento de clique para navegar para a página de detalhes
+        card.querySelector('.player-card').addEventListener('click', () => {
+            window.location.href = `detalhes.html?id=${player.idPlayer}`;
+        });
 
         // Adiciona o card ao container
         content.appendChild(card);
     });
-}
-
-// Função para mostrar detalhes do jogador em um modal
-function showPlayerDetails(player) {
-    const modalBody = document.getElementById('playerModalBody');
-    const modalLabel = document.getElementById('playerModalLabel');
-
-    // Preenche o título do modal
-    modalLabel.textContent = `Detalhes de ${player.strPlayer}`;
-
-    // Preenche o corpo do modal com mais informações
-    modalBody.innerHTML = `
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <img src="${player.strThumb}" onerror="this.style.backgroundColor='#e0e0e0'; this.style.height='250px'" class="img-fluid rounded" alt="${player.strPlayer}">
-            </div>
-            <div class="col-md-8">
-                <h4>${player.strPlayer}</h4>
-                <p><strong>Posição:</strong> ${player.strPosition || 'Não informado'}</p>
-                <p><strong>Nacionalidade:</strong> ${player.strNationality || 'Não informado'}</p>
-                <p><strong>Data de nascimento:</strong> ${player.dateBorn || 'Não informado'}</p>
-                <p><strong>Altura:</strong> ${player.strHeight || 'Não informado'}</p>
-                <p><strong>Peso:</strong> ${player.strWeight || 'Não informado'}</p>
-                <p><strong>Time:</strong> ${player.strTeam || 'Barcelona FC'}</p>
-                <p><strong>Descrição:</strong> ${player.strDescriptionEN || 'Sem descrição disponível.'}</p>
-            </div>
-        </div>
-    `;
-
-    // Mostra o modal
-    const modal = new bootstrap.Modal(document.getElementById('playerModal'));
-    modal.show();
 }
 
 // Função para filtrar jogadores baseado na busca
